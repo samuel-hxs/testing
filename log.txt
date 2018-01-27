@@ -1,0 +1,3 @@
+/usr/lib64/gcc/x86_64-suse-linux/4.8/../../../../lib64/crt1.o: In Funktion »_start«:
+/home/abuild/rpmbuild/BUILD/glibc-2.22/csu/../sysdeps/x86_64/start.S:114: Warnung: undefinierter Verweis auf »main«
+collect2: error: ld returned 1 exit status

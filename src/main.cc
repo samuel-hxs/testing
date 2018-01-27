@@ -1,6 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include <Box2D/Box2D.h>
 
 #include <iostream>
+
+#include <coin.hh>
 
 int main()
 {
@@ -31,7 +34,7 @@ int main()
 	// select the font
 	text.setFont(font); // font is a sf::Font
 	text.setString("ProjektKanal");
-	text.setCharacterSize(24); // in pixels, not points!
+	text.setCharacterSize(48); // in pixels, not points!
 	text.setFillColor(sf::Color::Green);
 	//text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
@@ -45,6 +48,23 @@ int main()
 
 	sf::Clock clock;
 	sf::Time runtime;
+
+	int coin_amount = 30;
+	Coin coins[coin_amount];
+
+	std::default_random_engine generator;
+        std::uniform_int_distribution<int> distribution(10, 790);
+
+	std::default_random_engine generator2;
+        std::uniform_int_distribution<int> distribution2(8, 60);
+	
+	for(int i = 0; i < coin_amount; i++)
+	{
+         	double y = distribution(generator);
+		double size = distribution2(generator2);
+		coins[i] = Coin(0, y, size);
+		coins[i].AddTo(&window);
+	}
 
 	bool running = true;
 	while (window.isOpen() && running)
@@ -73,18 +93,31 @@ int main()
 		if(runtime < sf::seconds(splash_time))
 		{
 			load_status.setSize(sf::Vector2f((int)((480 - 16 * 2 + 1) / splash_time * runtime.asSeconds()), 26));
-			//std::cout << runtime.asSeconds() << std::endl;
 			
 			window.draw(sprite);
 			window.draw(text);
 
 			window.draw(load_back);
 			window.draw(load_status);	
+			
 		}
 		else
 		{
-			//std::cout << "HaHa next form" << std::endl;
+			text.setString("Click the coins!\nPress ESC to exit.");
+			
 			window.draw(sprite);
+			window.draw(text);
+			
+			for(int i = 0; i < coin_amount; i++)
+			{
+				coins[i].Update(elapsed);
+				coins[i].Draw();
+				
+				if(coins[i].GetX() > 480)
+				{
+					coins[i].SetPos(-10, distribution(generator));
+				} 
+			}
 		}
 
 		window.display();
