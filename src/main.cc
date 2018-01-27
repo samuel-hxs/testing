@@ -11,7 +11,7 @@ int main()
 	//shape.setFillColor(sf::Color::Green);
 
 	sf::Texture texture;
-	if (!texture.loadFromFile("tex2.png"))
+	if (!texture.loadFromFile("./res/tex2.png"))
 	{
 		return 2;
 	}
@@ -21,7 +21,7 @@ int main()
 	sprite.setTexture(texture);
 
 	sf::Font font;
-	if(!font.loadFromFile("./Roboto-Regular.ttf"))
+	if(!font.loadFromFile("./res/Roboto-Regular.ttf"))
 	{
 		return 1;
 	}
@@ -30,7 +30,7 @@ int main()
 
 	// select the font
 	text.setFont(font); // font is a sf::Font
-	text.setString("A minimal Hexswarm Forget Alliance Forever launcher.");
+	text.setString("ProjektKanal");
 	text.setCharacterSize(24); // in pixels, not points!
 	text.setFillColor(sf::Color::Green);
 	//text.setStyle(sf::Text::Bold | sf::Text::Underlined);
