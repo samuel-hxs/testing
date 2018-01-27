@@ -2,3 +2,4 @@ obj/*.*
 bin/deb/prog
 bin/rel/prog
 lib/*.*
+inc/*.cpp
