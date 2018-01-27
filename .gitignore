@@ -1,4 +1,4 @@
-obj/
+obj/*.*
 bin/deb/prog
 bin/rel/prog
-lib/
+lib/*.*
